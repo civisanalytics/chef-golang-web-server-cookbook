@@ -9,7 +9,7 @@ case $1 in
      else
        echo "`date` Starting server" >> <%= @output_file %>
        echo $$ > <%= @pid_file %>;
-       <%= @release_path %>/nutty_<%= @application_name %>_server -c <%= @config_file %> 1>><%= @output_file %>;
+       <%= @release_path %>/nutty_<%= @application_name %>_server -c <%= @config_file %> &>><%= @output_file %>;
        rm <%= @pid_file %>;
        echo "`date` Server exited" >> <%= @output_file %>
      fi
