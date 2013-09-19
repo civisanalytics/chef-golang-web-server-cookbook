@@ -9,4 +9,28 @@ define :nutty_deploy_dir do
       recursive true
     end
   end
+
+  #symlink to goroot
+  src_base = "#{node['go']['install_dir']}/go/src"
+  if params[:import_path] and !File.exists?("#{src_base}/#{params[:import_path]}")
+    dir_parts = params[:import_path].split("/")
+    import_base = dir_parts[0, dir_parts.length-1]
+    link_dir = dir_parts[-1]
+
+    directory "#{src_base}/#{import_base}" do 
+      action :create
+      group params[:group]
+      owner params[:user]
+      mode 0770
+      recursive true
+    end
+
+    link "#{src_base}/#{import_base}/#{link_dir}" do
+      action :create
+      group params[:group]
+      owner params[:user]
+      to "#{params[:path]}/current"
+    end
+  end
+
 end
