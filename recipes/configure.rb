@@ -14,9 +14,10 @@ node[:deploy].each do |application, _|
   end
   
   nutty_deploy_dir do
-    user    node[:deploy][application][:user]
-    group   node[:deploy][application][:group]
-    path    node[:deploy][application][:deploy_to]
+    user        node[:deploy][application][:user]
+    group       node[:deploy][application][:group]
+    path        node[:deploy][application][:deploy_to]
+    import_path node[:deploy][application][:import_path]
   end
   
 end
