@@ -17,6 +17,7 @@ node[:deploy].each do |application, _|
     go_get?       node[:nutty][application][:auto_go_get_on_deploy]
     go_build?     node[:nutty][application][:auto_go_build_on_deploy]
     gopath        "#{node[:deploy][application][:deploy_to]}/current/build"
+    import_path   node[:deploy][application][:import_path]
   end
 
   nutty_deploy_config_and_monit do

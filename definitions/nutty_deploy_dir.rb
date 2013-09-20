@@ -25,12 +25,6 @@ define :nutty_deploy_dir do
       recursive true
     end
 
-    link "#{src_base}/#{import_base}/#{link_dir}" do
-      action :create
-      group params[:group]
-      owner params[:user]
-      to "#{params[:path]}/current"
-    end
   end
 
 end

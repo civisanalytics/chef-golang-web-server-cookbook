@@ -96,6 +96,24 @@ define :nutty_scm do
   
       before_symlink do
         if deploy[:application_type] == 'nutty'
+          src_base = "#{node['go']['install_dir']}/go/src"
+          dir_parts = params[:import_path].split("/")
+          import_base = dir_parts[0, dir_parts.length-1]
+          link_dir = dir_parts[-1]
+
+          go_src_dir="#{src_base}}/#{import_base}/#{link_dir}"
+
+          link go_src_dir do
+            action :delete
+            only_if "test -L #{go_src_dir}"
+          end
+
+          link go_src_dir do 
+            action :create
+            group params[:group]
+            owner params[:user]
+            to release_path
+          end
           
           bash "go-get-and-build-nutty-server" do
             cwd release_path
