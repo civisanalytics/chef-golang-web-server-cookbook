@@ -101,7 +101,7 @@ define :nutty_scm do
           import_base = dir_parts[0, dir_parts.length-1]
           link_dir = dir_parts[-1]
 
-          go_src_dir="#{src_base}}/#{import_base}/#{link_dir}"
+          go_src_dir="#{src_base}/#{import_base}/#{link_dir}"
 
           link go_src_dir do
             action :delete
