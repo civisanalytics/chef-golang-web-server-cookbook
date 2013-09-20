@@ -110,8 +110,8 @@ define :nutty_scm do
 
           link go_src_dir do 
             action :create
-            group params[:group]
-            owner params[:user]
+            group deploy[:group]
+            owner deploy[:user]
             to release_path
           end
           
