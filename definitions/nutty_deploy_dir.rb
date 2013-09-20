@@ -11,7 +11,7 @@ define :nutty_deploy_dir do
   end
 
   #symlink to goroot
-  src_base = "#{node['go']['install_dir']}/go/src"
+  src_base = "#{node['go']['install_dir']}/go/src/pkg"
   if params[:import_path] and !File.exists?("#{src_base}/#{params[:import_path]}")
     dir_parts = params[:import_path].split("/")
     import_base = dir_parts[0, dir_parts.length-1]
