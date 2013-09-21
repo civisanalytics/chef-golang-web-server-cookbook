@@ -98,7 +98,7 @@ define :nutty_scm do
         if deploy[:application_type] == 'nutty'
           src_base = "#{node['go']['install_dir']}/go/src/pkg"
           dir_parts = deploy[:import_path].split("/")
-          import_base = dir_parts[0, dir_parts.length-1]
+          import_base = dir_parts[0, dir_parts.length-1].join("/")
           link_dir = dir_parts[-1]
 
           go_src_dir="#{src_base}/#{import_base}/#{link_dir}"
