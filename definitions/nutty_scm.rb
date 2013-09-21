@@ -113,7 +113,9 @@ define :nutty_scm do
             group deploy[:group]
             owner deploy[:user]
             to release_path
-            only_if true
+            only_if do 
+              true
+            end
           end
           
           bash "go-get-and-build-nutty-server" do
