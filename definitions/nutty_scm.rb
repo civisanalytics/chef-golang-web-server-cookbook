@@ -103,6 +103,14 @@ define :nutty_scm do
 
           go_src_dir="#{src_base}/#{import_base}/#{link_dir}"
 
+          directory "#{src_base}/#{import_base}" do
+            group deploy[:group]
+            owner deploy[:user]
+            mode 0770
+            action :create
+            recursive true
+          end
+            
           link go_src_dir do
             action :delete
             only_if "test -L #{go_src_dir}"
